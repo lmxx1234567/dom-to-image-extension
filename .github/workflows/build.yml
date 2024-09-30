@@ -36,7 +36,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: dist/*
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.RELEASE_TOKEN }}
         name: v${{ steps.get_version.outputs.version }}
         body: nightly build
         tag_name: v${{ steps.get_version.outputs.version }}
