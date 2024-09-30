@@ -2,31 +2,31 @@ let selectedElement = null;
 
 // Add event listener for 'Select Element' button
 document.getElementById('selectElement').addEventListener('click', () => {
-  chrome.scripting.executeScript({
-    target: { tabId: chrome.tabs.TAB_ID_NONE },
+  getActiveTabId(tabId => chrome.scripting.executeScript({
+    target: { tabId },
     func: startSelectingElement,
   }, () => {
     document.getElementById('renderImage').disabled = false;
     document.getElementById('renderPDF').disabled = false;
-  });
+  }));
 });
 
 // Add event listener for 'Render as Image' button
 document.getElementById('renderImage').addEventListener('click', () => {
-  chrome.scripting.executeScript({
-    target: { tabId: chrome.tabs.TAB_ID_NONE },
+  getActiveTabId(tabId => chrome.scripting.executeScript({
+    target: { tabId },
     func: renderImage,
     args: [selectedElement]
-  });
+  }));
 });
 
 // Add event listener for 'Render as PDF' button
 document.getElementById('renderPDF').addEventListener('click', () => {
-  chrome.scripting.executeScript({
-    target: { tabId: chrome.tabs.TAB_ID_NONE },
+  getActiveTabId(tabId => chrome.scripting.executeScript({
+    target: { tabId },
     func: renderPDF,
     args: [selectedElement]
-  });
+  }));
 });
 
 // Injected function to start selecting an element
@@ -73,5 +73,16 @@ function renderPDF(selectedElementHtml) {
     const pdf = new jsPDF();
     pdf.addImage(imgData, 'PNG', 10, 10);
     pdf.save("dom_element.pdf");
+  });
+}
+
+// Function to get the active tab
+function getActiveTabId(callback) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    if (tabs.length > 0) {
+      callback(tabs[0].id); // Get the ID of the active tab
+    } else {
+      console.error("No active tab found");
+    }
   });
 }
