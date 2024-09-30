@@ -16,7 +16,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'manifest.json', to: '.' }, // Copy manifest.json to dist/
-        { from: 'icons/', to: 'icons/' }, // Copy icons folder to dist/icons/
+        { from: 'images/', to: 'images/' }, // Copy images folder to dist/images/
       ],
     }),
     // Automatically include your JavaScript bundle in popup.html
