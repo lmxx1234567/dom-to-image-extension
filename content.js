@@ -68,7 +68,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 function renderImage(selectedElementId) {
     const selectedElement = document.getElementById(selectedElementId);
 
-    html2canvas(selectedElement).then(canvas => {
+    getCanvas(selectedElement).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL("image/png");
         link.download = 'dom_image.png';
@@ -92,11 +92,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 function renderPDF(selectedElementId) {
     const selectedElement = document.getElementById(selectedElementId);
 
-    html2canvas(selectedElement).then(canvas => {
+    getCanvas(selectedElement).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF();
         pdf.addImage(imgData, 'PNG', 10, 10);
         pdf.save("dom_element.pdf");
+    });
+}
+
+// Get canvas from selected element
+function getCanvas(selectedElement) {
+    return html2canvas(selectedElement,{
+        useCORS: true,
+        allowTaint: true,
     });
 }
 
