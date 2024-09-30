@@ -1,11 +1,13 @@
 {
+  "$schema":"https://json.schemastore.org/chrome-manifest",
   "manifest_version": 3,
   "name": "DOM to Image",
   "description": "Render selected DOM element into an image or PDF.",
   "version": "1.0",
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -14,5 +16,11 @@
       "48": "images/icon48.ico",
       "128": "images/icon128.ico"
     }
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
 }

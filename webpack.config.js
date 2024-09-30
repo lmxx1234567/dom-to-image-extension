@@ -1,17 +1,22 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'production', // You can switch this to 'development' for easier debugging
+  mode: 'development', // You can switch this to 'development' for easier debugging
   entry: {
     popup: './popup.js', // Entry point for your popup script
+    content: './content.js', // Entry point for your content script
   },
   output: {
-    filename: '[name].bundle.js', // Output all bundles (e.g., popup.bundle.js)
+    filename: '[name].js', // Output all bundles (e.g., popup.js)
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'source-map', // Generate source maps for easier debugging
   plugins: [
+    // Clean the dist folder before every build
+    new CleanWebpackPlugin(),
     // Copy static files like manifest.json, icons, and any other assets to 'dist' folder
     new CopyWebpackPlugin({
       patterns: [
