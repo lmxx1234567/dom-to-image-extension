@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // You can switch this to 'development' for easier debugging
   entry: {
     popup: './popup.js', // Entry point for your popup script
     content: './content.js', // Entry point for your content script
@@ -13,7 +12,6 @@ module.exports = {
     filename: '[name].js', // Output all bundles (e.g., popup.js)
     path: path.resolve(__dirname, 'dist'),
   },
-  devtool: 'source-map', // Generate source maps for easier debugging
   plugins: [
     // Clean the dist folder before every build
     new CleanWebpackPlugin(),
@@ -31,5 +29,5 @@ module.exports = {
       inject: 'body', // Inject the JavaScript bundle into the body
       chunks: ['popup'], // Specify the bundle to include
     }),
-  ]
+  ],
 };

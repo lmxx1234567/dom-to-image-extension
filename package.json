@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "popup.js",
   "scripts": {
-    "build": "webpack"
+    "build": "npm run build:prod",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js"
   },
   "author": "lmxx1234567",
   "license": "MIT",
