@@ -10,13 +10,10 @@ Browser extension to render selected DOM element into an image or PDF.
 
 ## Installation
 
-1. Clone this repository:
-    ```sh
-    git clone https://github.com/lmxx1234567/dom-to-image-extension.git
-    ```
+1. Download zip or tar.gz archive from the [releases page](https://github.com/lmxx1234567/dom-to-image-extension/releases)
 2. Open Chrome and navigate to `chrome://extensions/`.
 3. Enable "Developer mode" using the toggle in the top-right corner.
-4. Click "Load unpacked" and select the cloned repository directory.
+4. Click "Load unpacked" and select the extracted folder.
 
 ## Usage
 
